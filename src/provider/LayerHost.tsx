@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, StyleSheet, Keyboard } from 'react-native';
 import { useLayerContext } from './LayerProvider';
 import { ModalLayer } from '../components/ModalLayer';
 import { DrawerLayer } from '../components/DrawerLayer';
@@ -12,6 +12,13 @@ import { MessageBoxLayer } from '../components/MessageBoxLayer';
  */
 export function LayerHost() {
   const { layers } = useLayerContext();
+
+  // 监听层级变化，自动收起键盘
+  useEffect(() => {
+    if (layers.length > 0) {
+      Keyboard.dismiss();
+    }
+  }, [layers.length]);
 
   return (
     <View style={StyleSheet.absoluteFill} pointerEvents="box-none">

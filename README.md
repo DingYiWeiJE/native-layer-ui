@@ -16,6 +16,7 @@
 - 🎚️ **Priority System** - Control layer ordering with priority levels
 - 🔒 **Exclusive Mode** - Ensure only one instance of a layer type exists
 - 🎮 **Instance Control** - Full control over individual layer instances
+- ⌨️ **Auto Keyboard Dismiss** - Automatically dismiss keyboard when opening/closing layers
 - 🚀 **TypeScript** - Full TypeScript support with type definitions
 
 ## 📦 Installation
