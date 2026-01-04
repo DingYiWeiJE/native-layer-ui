@@ -5,3 +5,7 @@ dist/
 *.tgz
 .vscode/
 .idea/
+yarn.lock
+.yarn/
+.pnp.*
+.claude/*

@@ -21,9 +21,9 @@
 ## 📦 Installation
 
 ```bash
-npm install native-layer-ui
-# or
 yarn add native-layer-ui
+# or
+npm install native-layer-ui
 ```
 
 ## 🚀 Quick Start

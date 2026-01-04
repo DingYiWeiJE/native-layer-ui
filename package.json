@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "description": "A unified Layer System for React Native - manage modals, drawers, sidebars, toasts, and message boxes with ease",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
-    "prepare": "npm run build"
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "prepare": "yarn build"
   },
   "keywords": [
     "react-native",
@@ -32,11 +40,14 @@
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-native": "^0.72.0",
+    "react": "^18.0.0",
+    "react-native": "^0.72.0",
+    "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/native-layer-ui.git"
+    "url": "https://github.com/DingYiWeiJE/native-layer-ui.git"
   },
   "files": [
     "dist",
