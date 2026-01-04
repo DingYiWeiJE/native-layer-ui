@@ -1,0 +1,47 @@
+{
+  "name": "native-layer-ui",
+  "version": "1.0.0",
+  "description": "A unified Layer System for React Native - manage modals, drawers, sidebars, toasts, and message boxes with ease",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "react-native",
+    "modal",
+    "drawer",
+    "sidebar",
+    "toast",
+    "messagebox",
+    "overlay",
+    "layer",
+    "ui",
+    "gesture",
+    "animation",
+    "imperative"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.60.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.72.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/native-layer-ui.git"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ]
+}
