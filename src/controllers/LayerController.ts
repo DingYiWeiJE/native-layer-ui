@@ -38,7 +38,7 @@ function createController(id: string): LayerController {
     id,
     close: () => {
       const context = getContext();
-      context.removeLayer(id);
+      context.requestClose(id); // 使用 requestClose 带动画关闭
     },
     update: (content: ReactNode, options?: Partial<BaseLayerOptions>) => {
       const context = getContext();
@@ -46,7 +46,7 @@ function createController(id: string): LayerController {
     },
     destroy: () => {
       const context = getContext();
-      context.removeLayer(id);
+      context.removeLayer(id); // destroy 立即删除，不带动画
     },
   };
 }
@@ -101,11 +101,11 @@ export const Layer = {
   },
 
   /**
-   * Close a layer by ID
+   * Close a layer by ID (with animation)
    */
   close(id: string): void {
     const context = getContext();
-    context.removeLayer(id);
+    context.requestClose(id);
   },
 
   /**
@@ -117,7 +117,7 @@ export const Layer = {
   },
 
   /**
-   * Destroy a layer by ID (alias for close)
+   * Destroy a layer by ID (immediate, no animation)
    */
   destroy(id: string): void {
     const context = getContext();

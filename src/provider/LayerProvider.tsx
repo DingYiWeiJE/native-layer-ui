@@ -81,6 +81,15 @@ export function LayerProvider({ children, baseZIndex = 1000, maxLayers = 50 }: L
     layer.options.onClose?.();
   }, []);
 
+  const requestClose = useCallback((id: string) => {
+    const layer = stackManagerRef.current.get(id);
+    if (!layer) return;
+
+    // 标记为正在关闭，触发退出动画
+    stackManagerRef.current.update(id, { closing: true });
+    setLayers(stackManagerRef.current.getAll());
+  }, []);
+
   const updateLayer = useCallback(
     (id: string, content: React.ReactNode, options?: Partial<BaseLayerOptions>) => {
       const layer = stackManagerRef.current.get(id);
@@ -134,6 +143,7 @@ export function LayerProvider({ children, baseZIndex = 1000, maxLayers = 50 }: L
     layers,
     addLayer,
     removeLayer,
+    requestClose,
     updateLayer,
     closeAll,
   };

@@ -57,6 +57,7 @@ export interface LayerItem {
   options: BaseLayerOptions;
   zIndex: number;
   timestamp: number;
+  closing?: boolean; // 标记正在关闭
 }
 
 // Layer controller interface
@@ -88,6 +89,7 @@ export interface LayerContextValue {
   layers: LayerItem[];
   addLayer: (type: LayerType, content: ReactNode, options: BaseLayerOptions) => string;
   removeLayer: (id: string) => void;
+  requestClose: (id: string) => void; // 请求关闭（带动画）
   updateLayer: (id: string, content: ReactNode, options?: Partial<BaseLayerOptions>) => void;
   closeAll: () => void;
 }

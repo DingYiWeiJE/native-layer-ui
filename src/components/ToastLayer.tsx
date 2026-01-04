@@ -63,6 +63,13 @@ export function ToastLayer({ layer }: ToastLayerProps) {
     }
   }, [fadeAnim, translateY, animationType, duration, autoClose, position]);
 
+  // 监听 closing 标记，执行退出动画
+  useEffect(() => {
+    if (layer.closing) {
+      handleClose();
+    }
+  }, [layer.closing]);
+
   const handleClose = () => {
     const finalTranslate = position === 'top' ? -50 : position === 'bottom' ? 50 : 0;
 

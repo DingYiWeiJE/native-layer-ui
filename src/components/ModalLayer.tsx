@@ -57,6 +57,13 @@ export function ModalLayer({ layer }: ModalLayerProps) {
     }
   }, [fadeAnim, scaleAnim, animationType, duration]);
 
+  // 监听 closing 标记，执行退出动画
+  useEffect(() => {
+    if (layer.closing) {
+      handleClose();
+    }
+  }, [layer.closing]);
+
   const handleClose = () => {
     // Exit animation
     if (animationType === 'spring') {

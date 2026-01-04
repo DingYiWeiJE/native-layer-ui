@@ -101,6 +101,13 @@ export function SidebarLayer({ layer }: SidebarLayerProps) {
     }
   }, [fadeAnim, translateX, animationType, duration, initialTranslate]);
 
+  // 监听 closing 标记，执行退出动画
+  useEffect(() => {
+    if (layer.closing) {
+      handleClose();
+    }
+  }, [layer.closing]);
+
   const handleClose = () => {
     // Exit animation
     if (animationType === 'spring') {
