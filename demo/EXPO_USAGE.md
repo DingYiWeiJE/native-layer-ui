@@ -2,7 +2,9 @@
 
 ## 重要提示
 
-在使用 `Layer` API 之前，必须确保你的组件树中包含了 `LayerProvider` 和 `LayerHost`。
+在使用 `Layer` API 之前，必须确保你的组件树中包含了 `LayerProvider`。
+
+> **好消息**: 从 v1.0 开始，`LayerHost` 已自动集成到 `LayerProvider` 中，使用更简单！
 
 ## 正确的使用方式
 
@@ -23,19 +25,16 @@ export default function TestPage() {
 
 ### ✅ 正确示例
 
-有两种方式正确使用：
-
 #### 方式 1: 在根组件包裹（推荐）
 
 **app/_layout.tsx** 或 **App.tsx**:
 ```tsx
-import { LayerProvider, LayerHost } from 'native-layer-ui';
+import { LayerProvider } from 'native-layer-ui';
 
 export default function RootLayout() {
   return (
     <LayerProvider>
       <Stack />
-      <LayerHost />
     </LayerProvider>
   );
 }
@@ -55,14 +54,14 @@ export default function TestPage() {
     );
   };
 
-  return <Button onPress={handleCapture} />;
+  return <Button title="测试弹窗" onPress={handleCapture} />;
 }
 ```
 
 #### 方式 2: 在当前页面包裹
 
 ```tsx
-import { LayerProvider, LayerHost, Layer } from 'native-layer-ui';
+import { LayerProvider, Layer } from 'native-layer-ui';
 
 function PageContent() {
   const handleCapture = () => {
@@ -73,14 +72,13 @@ function PageContent() {
     );
   };
 
-  return <Button onPress={handleCapture} />;
+  return <Button title="测试弹窗" onPress={handleCapture} />;
 }
 
 export default function TestPage() {
   return (
     <LayerProvider>
       <PageContent />
-      <LayerHost />
     </LayerProvider>
   );
 }
@@ -91,7 +89,7 @@ export default function TestPage() {
 ```tsx
 import React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
-import { LayerProvider, LayerHost, Layer } from 'native-layer-ui';
+import { LayerProvider, Layer } from 'native-layer-ui';
 
 function TestPageContent() {
   const showModal = () => {
@@ -119,7 +117,6 @@ export default function TestPage() {
   return (
     <LayerProvider>
       <TestPageContent />
-      <LayerHost />
     </LayerProvider>
   );
 }
@@ -159,9 +156,25 @@ const styles = StyleSheet.create({
 
 ### 2. 弹窗不显示
 
-**原因**: 忘记添加 `<LayerHost />`。
+**原因**: 可能是样式问题，确保弹窗内容有背景色和尺寸。
 
-**解决**: 在 `LayerProvider` 内部的最后添加 `<LayerHost />`。
+**解决**:
+```tsx
+// ✅ 正确：有明确的背景色和尺寸
+<View style={{
+  width: 300,
+  backgroundColor: 'white',  // 必须有背景色
+  borderRadius: 16,
+  padding: 24
+}}>
+  <Text>内容</Text>
+</View>
+
+// ❌ 错误：没有背景色，弹窗可能看不见
+<View style={{ width: 300 }}>
+  <Text>内容</Text>
+</View>
+```
 
 ### 3. Expo 项目中的特殊配置
 
@@ -212,3 +225,16 @@ Layer.closeAll();
   onClose: () => {},       // 关闭回调
 }
 ```
+
+## 架构说明
+
+使用新版本后，架构更加简洁：
+
+```
+<App>
+ └── <LayerProvider>
+      ├── <YourPages />
+      └── <LayerHost /> (自动包含，无需手动添加)
+```
+
+这样的设计让使用更加简单，减少了样板代码！
