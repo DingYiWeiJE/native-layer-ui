@@ -4,6 +4,7 @@ import { StackManager } from '../core/stackManager';
 import { generateId } from '../core/idGenerator';
 import { layerEventEmitter } from '../core/eventEmitter';
 import { setLayerContext } from '../controllers/LayerController';
+import { LayerHost } from './LayerHost';
 
 const LayerContext = createContext<LayerContextValue | null>(null);
 
@@ -142,7 +143,12 @@ export function LayerProvider({ children, baseZIndex = 1000, maxLayers = 50 }: L
     setLayerContext(value);
   }, [value]);
 
-  return <LayerContext.Provider value={value}>{children}</LayerContext.Provider>;
+  return (
+    <LayerContext.Provider value={value}>
+      {children}
+      <LayerHost />
+    </LayerContext.Provider>
+  );
 }
 
 /**

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { LayerProvider, LayerHost } from '../src';
+import { LayerProvider } from '../src';
 import {
   BasicModalDemo,
   ConfirmDialogDemo,
@@ -30,9 +30,6 @@ export default function App() {
           <SelectListModalDemo />
         </ScrollView>
       </SafeAreaView>
-
-      {/* 必须放在最后 */}
-      <LayerHost />
     </LayerProvider>
   );
 }

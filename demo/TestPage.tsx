@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
-import { LayerProvider, LayerHost, Layer } from 'native-layer-ui';
+import { LayerProvider, Layer } from 'native-layer-ui';
 
 // 假设你的 rem 工具函数
 const rem = (value: number) => value * 16; // 示例实现
@@ -30,7 +30,6 @@ export default function TestPage() {
   return (
     <LayerProvider>
       <TestPageContent />
-      <LayerHost />
     </LayerProvider>
   );
 }

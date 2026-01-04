@@ -30,20 +30,21 @@ npm install native-layer-ui
 
 ### 1. Setup Provider
 
-Wrap your app with `LayerProvider` and add `LayerHost`:
+Wrap your app with `LayerProvider`:
 
 ```tsx
-import { LayerProvider, LayerHost } from 'native-layer-ui';
+import { LayerProvider } from 'native-layer-ui';
 
 export default function App() {
   return (
     <LayerProvider>
       <YourApp />
-      <LayerHost />
     </LayerProvider>
   );
 }
 ```
+
+> **Note**: `LayerHost` is now automatically included in `LayerProvider`, no need to add it manually!
 
 ### 2. Use Imperative API
 
@@ -353,7 +354,7 @@ const styles = StyleSheet.create({
 <App>
  └── <LayerProvider>
       ├── <YourApp />
-      └── <LayerHost>
+      └── <LayerHost /> (automatically included)
            ├── Modal layers
            ├── Drawer layers
            ├── Sidebar layers

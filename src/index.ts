@@ -1,6 +1,5 @@
 // Main exports
 export { LayerProvider, useLayerContext } from './provider/LayerProvider';
-export { LayerHost } from './provider/LayerHost';
 export { Layer } from './controllers/LayerController';
 
 // Component exports
